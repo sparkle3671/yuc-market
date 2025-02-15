@@ -1,6 +1,5 @@
 {
   "name": "koishi-plugin-yuc-market",
-  "description": "一个用来语c模拟交易的插件",
   "version": "1.0.0",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -16,6 +15,14 @@
   ],
   "peerDependencies": {
     "koishi": "^4.18.7"
+  },
+  "koishi": {
+    "description": {
+      "zh": "一个用来语c模拟交易的插件"
+    },
+    "service": {
+      "required": ["database"]
+    }
   },
   "dependencies": {
     "better-sqlite3": "^11.8.1"
