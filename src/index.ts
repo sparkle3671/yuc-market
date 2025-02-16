@@ -269,7 +269,13 @@ async function handlePurchase(ctx, session: any) {
   if (product.type === 'slave') {
     const priceType = matches[3]
     if (priceType === '公演') {
-      price = product.publicPrice
+      if(product.publicPrice === -1){
+        return '该商品不参与公演'
+      }
+      else{
+        price = product.publicPrice
+      }
+
     }
   }
 
@@ -343,7 +349,7 @@ async function handleListProduct(ctx, session: any, listNumber: number) {
   let productList = ''
   console.log(products[0].isAvaliable);
   for (const product of products) {
-    productList += `${product.id.toFixed(1)} ${product.name}(${product.description}) ${product.price}眼(公演${product.publicPrice}眼) ${product.isAvaliable === 1 ? `出售中` : `营业中`} \n`
+    productList += `${product.id.toFixed(1)} ${product.name}(${product.description}) ${product.price}眼 ${product.publicPrice === -1 ? '（无公演）' : `（公演${product.publicPrice}眼）`} ${product.isAvaliable === 1 ? `出售中` : `营业中`} \n`
   }
   return productList
 
