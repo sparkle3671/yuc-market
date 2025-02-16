@@ -65,10 +65,10 @@ export async function apply(ctx: Context) {
   .action(async () => {
     return `${botGuideContent}`
   })//bot简介
-  ctx.command('商品购买上架指南')
+  ctx.command('商店使用指南')
   .action(async () => {
     return `${purchaseGuideContent}`
-  })//商品购买上架指南
+  })//商店使用指南
 
   ctx.middleware(async (session, next) => {//签到
     if(session.content === '签到') {
