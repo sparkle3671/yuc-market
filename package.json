@@ -1,6 +1,6 @@
 {
   "name": "koishi-plugin-yuc-market",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "files": [
@@ -21,7 +21,9 @@
       "zh": "一个用来语c模拟交易的插件"
     },
     "service": {
-      "required": ["database"]
+      "required": [
+        "database"
+      ]
     }
   },
   "dependencies": {
