@@ -33,6 +33,8 @@ export const menuContent = `
 5. 商店使用指南
 6. 色图
 7. 商品列表1
+8. 商品列表2
+9. 商品列表3
 `;
 
 export const purchaseGuideContent = `
@@ -303,16 +305,17 @@ async function handleTransaction(ctx, session, targetUserId, targeteyes, transac
     session.send('你的眼数不够')
     return false
   }
-  console.log('断点1');
-   let targetData = await ctx.database.get('userdata', {id: targetUserId})
+
+   let [targetData] = await ctx.database.get('userdata', {id: targetUserId})
   if (!targetData) {
     targetData = await ctx.database.create('userdata', {id: targetUserId, eyes: 0, lastChickIn: ' '})
   }
-  console.log('断点2');
+
   const newSourceData = {
     eyes: sourceData.eyes - targeteyes,
     lastChickIn: sourceData.lastChickIn,
   } 
+
   const newTargetData = {
     eyes: targetData.eyes + targeteyes,
     lastChickIn: targetData.lastChickIn,
