@@ -184,6 +184,12 @@ export async function apply(ctx: Context) {
       return next();
     }
   })
+  ctx.middleware(async (session, next) => {//开发者导出数据
+    if(session.content === '导出数据') {
+      await handleExportData(ctx, session);
+      return '导出成功'
+    }
+  })
 }
 
 
@@ -412,3 +418,15 @@ async function handleDevImportData(ctx: Context, session: any, allData: any) {
   }
   return '导入完成'
 }//导入数据
+
+async function handleExportData(ctx: Context, session: any) {
+  // 获取所有用户数据
+  const userData = await ctx.database.get('userdata', {});
+  // 获取所有商品数据
+  const productData = await ctx.database.get('product', {});
+
+  console.log(userData
+    .map(row => `${row.id} ${row.eyes} ${row.lastChickIn}`)
+    .join('\n')
+  )
+}//导出数据
